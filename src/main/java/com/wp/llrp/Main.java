@@ -1,6 +1,7 @@
 package com.wp.llrp;
 
 
+import com.wp.llrp.proxy.ProxyLLRPServer;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
@@ -20,15 +21,11 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
-        logger.info("Initializing reader...");
+        logger.info("Starting...");
 
-        IoAcceptor acceptor = new NioSocketAcceptor();
-        acceptor.getFilterChain().addLast("logger", new LoggingFilter());
-        acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter( new LLRPBinaryEncoder(), new LLRPBinaryDecoder()));
-        acceptor.setHandler(new LLRPIoHandlerAdapterImpl());
-        acceptor.getSessionConfig().setReadBufferSize(2048);
-        acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
-      //  acceptor.bind(new InetSocketAddress(PORT));
+        ProxyLLRPServer proxyLLRPServer = new ProxyLLRPServer();
+        proxyLLRPServer.start(55555);
+
     }
 
 }

@@ -28,7 +28,12 @@
         </encoder>
     </appender>
 
-    <logger name="com.wrkthruit" level="debug" additivity="false">
+    <logger name="com.wp" level="debug" additivity="false">
+        <appender-ref ref="FILE-ROLLING"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="org.llrp" level="debug" additivity="false">
         <appender-ref ref="FILE-ROLLING"/>
         <appender-ref ref="CONSOLE"/>
     </logger>
