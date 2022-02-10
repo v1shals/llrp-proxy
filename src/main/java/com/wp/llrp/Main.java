@@ -9,6 +9,7 @@ import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.llrp.ltk.net.LLRPBinaryDecoder;
 import org.llrp.ltk.net.LLRPBinaryEncoder;
+import org.llrp.ltk.net.LLRPConnectionAttemptFailedException;
 import org.llrp.ltk.net.LLRPIoHandlerAdapterImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +21,12 @@ public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         logger.info("Starting...");
 
         ProxyLLRPServer proxyLLRPServer = new ProxyLLRPServer();
-        proxyLLRPServer.start(55555);
+        proxyLLRPServer.start(60004);
+
 
     }
 
