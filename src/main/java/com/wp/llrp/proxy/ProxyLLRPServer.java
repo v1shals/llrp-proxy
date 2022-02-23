@@ -22,13 +22,14 @@ public class ProxyLLRPServer {
         logger.info("Initializing reader...");
 
         IoAcceptor acceptor = new NioSocketAcceptor();
-        acceptor.getFilterChain().addLast("logger", new LoggingFilter());
+       // acceptor.getFilterChain().addLast("logger", new LoggingFilter());
         acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new LLRPBinaryEncoder(), new LLRPBinaryDecoder()));
         ProxyIoHandler proxyIoHandler = new ProxyIoHandler();
         proxyIoHandler.init();
         acceptor.setHandler(proxyIoHandler);
-        acceptor.getSessionConfig().setReadBufferSize(2048);
+        acceptor.getSessionConfig().setReadBufferSize(204800);
         acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 30);
         acceptor.bind(new InetSocketAddress(port));
+
     }
 }

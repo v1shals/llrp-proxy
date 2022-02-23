@@ -25,7 +25,7 @@ public class Main {
         logger.info("Starting...");
 
         ProxyLLRPServer proxyLLRPServer = new ProxyLLRPServer();
-        proxyLLRPServer.start(60004);
+        proxyLLRPServer.start(60007);
 
 
     }
